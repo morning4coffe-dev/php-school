@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Kalkulačka</title>
+    </head>
+    <body>
+        <p>Vítejte v kalkulačce, zadejte 2 čísla a operaci.</p>
+
+        <form method="POST" action="vypocet.php">
+            <input name="cislo1" type="text" /><br />
+            <input name="cislo2" type="text" /><br />
+            Operace:
+            <select name="operace">
+                <option value="scitani">Sčítání</option>
+                <option value="odcitani">Odčítání</option>
+                <option value="nasobeni">Násobení</option>
+                <option value="deleni">Dělení</option>
+            </select><br />
+            <input type="submit" value="Vypočítej" />
+        </form>
+
+<?php 
+$a = $_POST['cislo1'];
+$b = $_POST['cislo2'];
+$operace = $_POST['operace'];
+
+if ($operace == 'scitani')
+    $vysledek = $a + $b;
+else if ($operace == 'odcitani')
+    $vysledek = $a - $b;
+else if ($operace == 'nasobeni')
+    $vysledek = $a * $b;
+else if ($operace == 'deleni')
+{
+    if ($b != 0)
+        $vysledek = $a / $b;
+    else
+        $vysledek = 'Chyba';
+}
+echo("Výsledek: $vysledek"); ?>
+    </body>
+</html>
